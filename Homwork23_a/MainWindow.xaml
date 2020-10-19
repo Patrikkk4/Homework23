@@ -1,0 +1,68 @@
+﻿<Window x:Class="Homwork23_a.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homwork23_a"
+        xmlns:vm="clr-namespace:Homwork23_a.ViewModel"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow"
+        Height="110"
+        Width="500">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+
+                <TextBlock 
+                    HorizontalAlignment="Center"
+                    Text="Введите число"/>
+
+                <CheckBox 
+                    Margin="5 0 0 0"
+                    IsChecked="{Binding Words}">
+
+                    <CheckBox.Resources>
+                        <Style TargetType="CheckBox">
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content" Value="цифрами"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="Content" Value="прописью"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </CheckBox.Resources>
+                </CheckBox>
+
+            </StackPanel>
+
+            <TextBox
+                Width="400"
+                HorizontalAlignment="Center"
+                Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock
+                HorizontalAlignment="Center"
+                Margin="0 5 0 5"
+                FontSize="20"
+                TextWrapping="Wrap"
+                Text="{Binding Mess}"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
